@@ -1,0 +1,18 @@
+{
+  "mission": "Mission 3: 산업단지 영역 분할",
+  "model": "U-Net based Semantic Segmentation",
+  "validation_mIoU": 0.999999454498291,
+  "validation_dice": 0.9999997272491455,
+  "best_epoch_iou": 0.9999996871948242,
+  "training_samples": 8000,
+  "validation_samples": 1000,
+  "total_epochs": 13,
+  "model_parameters": 32521105,
+  "performance_stats": {
+    "mean_iou": 0.999999454498291,
+    "std_iou": 5.860933205918371e-06,
+    "median_iou": 1.0,
+    "percentile_95_iou": 1.0,
+    "percentile_5_iou": 1.0
+  }
+}
