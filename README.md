@@ -6,11 +6,44 @@
 
 ```
 DCC/
-├── mission1/                  # 굴뚝 탐지 (YOLO)
-├── mission2/                  # 높이 추정
-├── mission3/                  # 산업시설 분할
-├── requirements.txt           # 프로젝트 의존성
-└── README.md                 # 이 파일
+├── mission1/                              # 굴뚝 탐지 (YOLO)
+│   ├── mission1_chimney_detection.ipynb  # 메인 노트북
+│   ├── yolo_dataset/                     # 변환된 YOLO 데이터셋
+│   ├── yolo11n.pt                        # 사전 훈련된 모델
+│   └── yolov8n.pt                        # 사전 훈련된 모델
+├── mission2/                              # 높이 추정
+│   ├── mission2_height_estimation.ipynb  # 메인 노트북
+│   ├── best_height_estimation_model.pth  # 훈련된 모델
+│   └── mission2_results.json             # 결과 파일
+├── mission3/                              # 산업시설 분할
+│   ├── mission3_industrial_segmentation.ipynb  # 메인 노트북
+│   ├── best_segmentation_model.pth       # 훈련된 모델
+│   └── mission3_results.json             # 결과 파일
+├── runs/                                  # YOLO 훈련 결과
+│   └── detect/
+│       └── chimney_detection/            # 굴뚝 탐지 결과
+│           ├── weights/                  # 모델 가중치
+│           │   ├── best.pt              # 최고 성능 모델
+│           │   └── last.pt              # 마지막 체크포인트
+│           └── results.png              # 훈련 결과 그래프
+├── 53.대기오염 배출원 공간 분포 데이터/      # **데이터 소스 디렉토리**
+│   └── 3.개방데이터/
+│       └── 1.데이터/
+│           ├── Training/                # 훈련 데이터
+│           │   ├── 01.원천데이터/       # 원본 위성 이미지
+│           │   │   ├── TS_KS/           # Kompsat 위성 이미지 (굴뚝 탐지용)
+│           │   │   ├── TS_SN10_SN10/    # Sentinel-2 위성 이미지
+│           │   │   └── *.zip            # 압축된 데이터셋들
+│           │   └── 02.라벨링데이터/     # 어노테이션 데이터
+│           │       ├── TL_KS_BBOX/      # 굴뚝 바운딩 박스 라벨
+│           │       └── 기타 라벨 폴더들
+│           ├── Validation/              # 검증 데이터
+│           │   ├── 01.원천데이터/       # 검증용 위성 이미지
+│           │   └── 02.라벨링데이터/     # 검증용 라벨
+│           └── Other/                   # 기타 데이터
+├── requirements.txt                       # 프로젝트 의존성
+├── .python-version                        # Python 버전 명시
+└── README.md                             # 이 파일
 ```
 
 ## 미션 개요
@@ -96,23 +129,7 @@ pip install torch==2.3.1+cu121 torchvision==0.18.1+cu121 torchaudio==2.3.1+cu121
 이 프로젝트는 **대기오염 배출원 공간 분포 데이터**를 사용합니다. 해당 데이터는 AI Hub 또는 관련 공공 데이터 포털에서 제공되는 위성 이미지 데이터셋입니다.
 
 ### 데이터 구조
-```
-53.대기오염 배출원 공간 분포 데이터/
-└── 3.개방데이터/
-    └── 1.데이터/
-        ├── Training/              # 훈련 데이터
-        │   ├── 01.원천데이터/     # 원본 위성 이미지
-        │   │   ├── TS_KS/         # Kompsat 위성 이미지 (굴뚝 탐지용)
-        │   │   ├── TS_SN10_SN10/  # Sentinel-2 위성 이미지
-        │   │   └── *.zip          # 압축된 데이터셋들
-        │   └── 02.라벨링데이터/   # 어노테이션 데이터
-        │       ├── TL_KS_BBOX/    # 굴뚝 바운딩 박스 라벨
-        │       └── 기타 라벨 폴더들
-        ├── Validation/            # 검증 데이터
-        │   ├── 01.원천데이터/     # 검증용 위성 이미지
-        │   └── 02.라벨링데이터/   # 검증용 라벨
-        └── Other/                 # 기타 데이터
-```
+위의 프로젝트 구조에서 **데이터 소스 디렉토리** 부분을 참조하세요. 모든 훈련 및 검증 데이터는 `53.대기오염 배출원 공간 분포 데이터/` 폴더에 구성되어 있습니다.
 
 ### 사용 데이터
 - **위성 이미지**: Kompsat-3/3A, Sentinel-2, Landsat-8 등
