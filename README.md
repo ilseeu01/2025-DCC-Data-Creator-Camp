@@ -30,6 +30,11 @@ DCC/
 - **기술**: 시맨틱 세그멘테이션, PyTorch, segmentation-models-pytorch
 - **파일**: `mission3/mission3_industrial_segmentation.ipynb`
 
+## 요구사항
+
+- **Python**: 3.10+ (권장: 3.10.11)
+- **CUDA**: 12.1+ (GPU 사용 시)
+
 ## 설치 및 설정
 
 ### 1. 환경 설정
