@@ -1,11 +1,11 @@
 {
   "mission": "Mission 2: 굴뚝 높이 추정",
   "model": "ResNet50-based Height Estimation",
-  "validation_rmse": 25.286672592163086,
-  "validation_mae": 19.384666442871094,
+  "validation_rmse": 23.276071548461914,
+  "validation_mae": 17.033039093017578,
   "training_samples": 10590,
   "validation_samples": 1323,
-  "model_parameters": 11308097,
+  "model_parameters": 24721473,
   "height_range": {
     "min": 40.209999084472656,
     "max": 298.07000732421875,
